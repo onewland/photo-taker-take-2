@@ -9,7 +9,7 @@ done
 montage -geometry 480x1080 \
         -tile 4x1 \
 	$1-crop-resized.jpg $2-crop-resized.jpg $3-crop-resized.jpg $4-crop-resized.jpg \
-	snapshot-montage.jpg
+	$5.jpg
 
 for i in $1 $2 $3 $4; do
 	rm $i-gray.jpg;
