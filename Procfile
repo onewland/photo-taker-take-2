@@ -1,2 +1,2 @@
-listener: python poller.py
-photo-taker: imagesnap -w 1 -t 1.0
+photos: imagesnap -w 1 -t 1.0
+listener: PYTHONUNBUFFERED=true python poller.py
