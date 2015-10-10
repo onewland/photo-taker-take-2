@@ -18,6 +18,7 @@ black = pygame.Color(0,0,0)
 font = pygame.font.Font(None, 256)
 imgPath = 'photos/6fd46727e9df35668c6e1235287e3d6e.jpg'
 text = font.render("TEST TRANSMISSION", 1, white, red)
+last_pressed = time.time()
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -37,7 +38,10 @@ while 1:
     pygame.display.update()
 
     GPIO.wait_for_edge(channel,GPIO.RISING)
-    sqs.send_message(QueueUrl=QUEUE_URL,MessageBody=unicode(datetime.datetime.now()))
+    now = time.time()
+    if now - last_pressed > 8:
+        sqs.send_message(QueueUrl=QUEUE_URL,MessageBody=unicode(datetime.datetime.now()))
+        last_pressed = now
     screen.fill(red)
     screen.blit(text, (100,100))
     pygame.display.update()
