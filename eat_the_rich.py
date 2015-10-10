@@ -42,6 +42,7 @@ def maybe_image_render():
     if now - last_image_switch > IMAGE_SWITCH_SECONDS:
         current_image = pygame.image.load(randomImagePath())
         render_current_image()
+        last_image_switch = now
 
 def render_current_image():
     current_image = pygame.image.load(randomImagePath())
@@ -49,6 +50,7 @@ def render_current_image():
     screen.blit(current_image, imagerect)
     pygame.display.update()
 
+render_current_image()
 while 1:
     # GPIO.wait_for_edge(channel,GPIO.FALLING)
     maybe_image_render()
