@@ -13,8 +13,6 @@ channel = 18
 red = pygame.Color(255,50,50)
 white = pygame.Color(255,255,255)
 black = pygame.Color(0,0,0)
-width = 1824
-height = 984
 font = pygame.font.Font(None, 256)
 text = font.render("EAT THE RICH", 1, white, red)
 
