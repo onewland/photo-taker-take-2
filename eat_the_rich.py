@@ -45,7 +45,6 @@ def maybe_image_render():
         last_image_switch = now
 
 def render_current_image():
-    current_image = pygame.image.load(randomImagePath())
     imagerect = current_image.get_rect()
     screen.blit(current_image, imagerect)
     pygame.display.update()
@@ -57,11 +56,11 @@ while 1:
     # GPIO.wait_for_edge(channel,GPIO.RISING)
     if(GPIO.event_detected(channel)):
         now = time.time()
-        if now - last_pressed > 8:
+        if now - last_pressed > 3:
             sqs.send_message(QueueUrl=QUEUE_URL,MessageBody=unicode(datetime.datetime.now()))
             last_pressed = now
-        screen.fill(red)
-        screen.blit(text, (100,100))
-        pygame.display.update()
-        time.sleep(1)
-        render_current_image()
+            screen.fill(red)
+            screen.blit(text, (100,100))
+            pygame.display.update()
+            time.sleep(1)
+            render_current_image()
